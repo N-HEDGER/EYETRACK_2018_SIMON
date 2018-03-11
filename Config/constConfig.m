@@ -23,7 +23,7 @@ function [const]=constConfig(scr,const)
 const.stimtypes=2;
 % Social and Nonsocial.
 
-const.scrams=2;
+const.scrams=1;
 % Scrambled and unscrambled.
 
 const.durations=[5000];
@@ -32,7 +32,7 @@ const.durations=[5000];
 const.reps=30;
 % Repetitions 1 for each stimulus.
 
-const.numtrials=(const.stimtypes*const.scrams*length(const.durations)*const.reps);
+const.numtrials=((const.stimtypes/2)*const.scrams*length(const.durations)*const.reps);
 
 %% Stimulus parameters
 
