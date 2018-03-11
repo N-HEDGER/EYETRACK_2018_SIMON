@@ -15,15 +15,7 @@ screenNumber = max(screens);
 white = WhiteIndex(screenNumber);
 black = BlackIndex(screenNumber);
 
-[scr] = scrConfig(const);
-[scr.main,scr.rect] = Screen('OpenWindow',screenNumber,black,[], scr.clr_depth,2);
-[const] = constConfig(scr,const);
 
-mkdir(strcat('Data/','Calibration'));
-const.calibfilename=strcat('Data/','Calibration/',const.name,'.mat'); % Filename for gaze data file
-
-[vadegx,vadegy]=vaDeg2pix(1,scr);
-vadeg=(vadegx+vadegy)/2;
 
 
 Screen('Preference', 'SkipSyncTests', 1); 
@@ -39,7 +31,7 @@ else
     eyetracker=eyetrackers(1);
 end
  
-dotSizePix=vadeg*0.75; 
+
 
 if isa(eyetracker,'EyeTracker')
     disp(['Address:',eyetracker.Address]);
@@ -56,6 +48,17 @@ else
 end
 
 
+[scr] = scrConfig(const);
+[scr.main,scr.rect] = Screen('OpenWindow',screenNumber,black,[], scr.clr_depth,2);
+[const] = constConfig(scr,const);
+
+mkdir(strcat('Data/','Calibration'));
+const.calibfilename=strcat('Data/','Calibration/',const.name,'.mat'); % Filename for gaze data file
+
+[vadegx,vadegy]=vaDeg2pix(1,scr);
+vadeg=(vadegx+vadegy)/2;
+
+dotSizePix=vadeg*0.75; 
 
 [screenXpixels, screenYpixels] = Screen('WindowSize', scr.main);
 screen_pixels = [screenXpixels screenYpixels];
